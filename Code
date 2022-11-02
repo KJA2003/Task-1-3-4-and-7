@@ -1,0 +1,183 @@
+import matplotlib.pyplot as plt
+from math import sin
+
+def dot_product(a,b):
+    total = 0
+    for i in range(len(a)):
+        total = total + (a[i] * b[i])
+    print(total)
+
+def sub_course_positions(path):
+    forward = 0
+    depth = 0
+
+    with path as readfile:
+        for line in readfile:
+            if line.startswith("forward"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                forward = forward + s[0]
+
+            if line.startswith("down"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                depth = depth + s[0]
+
+            if line.startswith("up"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                depth = depth - s[0]
+    print("forward = " + str(forward))
+    print("depth = " + str(depth))
+
+def sub_course(path):
+    forward = 0
+    depth = 0
+
+    with path as readfile:
+        for line in readfile:
+            if line.startswith("forward"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                forward = forward + s[0]
+
+            if line.startswith("down"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                depth = depth + s[0]
+
+            if line.startswith("up"):
+                s = []
+                for t in line.split():
+                    try:
+                      s.append(float(t))
+                    except ValueError:
+                        pass
+                depth = depth - s[0]
+
+
+
+    print(depth * forward)
+
+def simplified_pig_latin(word):
+
+    if word[0].lower() == "a" or word[0].lower() == "e" or word[0].lower() == "i" or word[0].lower() == "o" or word[0].lower() == "u":
+        pig = word + "hay"
+
+    else:
+
+        pig = word[1:] + word[0] + "ay"
+
+    print(pig.lower())
+
+def sentence_to_simplified_pig_latin(sentence):
+
+    words = sentence.split()
+
+    for i, word in enumerate(words):
+
+        if word[0] in 'aeiou':
+            words[i] = words[i]+ "ay"
+
+        else:
+            has_vowel = False
+
+            for j, letter in enumerate(word):
+                if letter in 'aeiou':
+                    words[i] = word[j:] + word[:j] + "ay"
+                    has_vowel = True
+                    break
+
+            if(has_vowel == False):
+                words[i] = words[i]+ "ay"
+
+    pig_latin = ' '.join(words)
+    print(pig_latin)
+
+def graph7a():
+    xs = [n / 10 for n in range(101)]
+    # 2 ulike lister med y-verdier
+    ys_1 = [sin(x) for x in xs]
+    ys_2 = [3 * sin(x) for x in xs]
+
+    plt.plot(xs, ys_1, "+-g")
+    plt.plot(xs, ys_2, "+-y")
+
+    # savefig lagrer filene
+    plt.savefig("test.png")
+    plt.savefig("test.pdf")
+
+    # interaktivt vindu
+    plt.show() # Hva skjer om vi ikke har med den raden: plt.show()?
+
+def graph7b():
+    # liste med x-verdier
+    xs = [n / 10 for n in range(101)]
+    # 2 ulike lister med y-verdier
+    ys_1 = [sin(x) for x in xs]
+    ys_2 = [3 * sin(x) for x in xs]
+
+    plt.plot(xs, ys_1, "-.r")
+    plt.plot(xs, ys_2, "--b")
+
+    plt.minorticks_on()
+
+    plt.tick_params(axis="x", which="minor", color="r")
+    plt.tick_params(axis="y", which="minor", color="r")
+    # savefig lagrer filene
+    plt.savefig("test.png")
+    plt.savefig("test.pdf")
+
+    plt.show() # Hva skjer om vi ikke har med den raden: plt.show()?
+
+def graph7c():
+    # liste med x-verdier
+    xs = [n / 10 for n in range(101)]
+    # 2 ulike lister med y-verdier
+    ys_1 = [sin(x) for x in xs]
+    ys_2 = [3 * sin(x) for x in xs]
+
+    plt.plot(xs, ys_1, "-.r")
+    plt.plot(xs, ys_2, "--b")
+
+    plt.minorticks_on()
+
+    plt.tick_params(axis="x", which="minor", color="r")
+    plt.tick_params(axis="y", which="minor", color="r")
+    # savefig lagrer filene
+    plt.savefig("test.png")
+    plt.savefig("test.pdf")
+
+    plt.annotate('First Intersection', xy =(3.1, 0), xytext =(4, 1.8), arrowprops = dict(facecolor ='black',shrink = 0.05),)
+    plt.show() # Hva skjer om vi ikke har med den raden: plt.show()?
+
+dot_product([1,2,3],[4,5,6])
+sub_course_positions(open('path','r'))
+sub_course(open('path','r'))
+simplified_pig_latin("test")
+sentence_to_simplified_pig_latin("test for sentence latin enter")
+graph7a()
+graph7b()
+graph7c()
+
+
